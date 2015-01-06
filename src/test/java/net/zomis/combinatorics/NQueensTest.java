@@ -3,6 +3,7 @@ package net.zomis.combinatorics;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,43 +11,45 @@ import net.zomis.minesweeper.analyze.AnalyzeFactory;
 import net.zomis.minesweeper.analyze.AnalyzeResult;
 import net.zomis.minesweeper.analyze.BoundedFieldRule;
 import net.zomis.minesweeper.analyze.FieldRule;
-import net.zomis.minesweeper.analyze.RuleConstraint;
 import net.zomis.minesweeper.analyze.Solution;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class NQueensTest {
 
-	@Test
-	public void rules() throws Exception {
-		AnalyzeFactory<Integer> queens = createQueens(3);
-		assertEquals(16, queens.getRules().size());
+	@Parameters
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] {
+			{ 1, 1 }, { 2, 0 }, { 3, 0 }, { 4, 2 }, { 5, 10 }, { 6, 4 },
+			{ 7, 40 }, { 8, 92 }, { 9, 352 }, { 10, 724 },
+//	takes much longer time: { 11, 2680 }, { 12, 14200 }, { 13, 73712 }, { 14, 365596 }
+		});
 	}
 	
+	@Parameter(0)
+	public int size;
+	
+	@Parameter(1)
+	public int expectedSolutions;
+	
 	@Test
-	public void fourQueens() throws Exception {
-		AnalyzeFactory<Integer> queens = createQueens(4);
-		System.out.println(queens);
-		for (RuleConstraint<Integer> rule : queens.getRules()) {
-			System.out.println(rule);
-		}
-		assertEquals(22, queens.getRules().size());
-		
+	public void solve() {
+		AnalyzeFactory<Integer> queens = createQueens(size);
 		AnalyzeResult<Integer> solve = queens.solve();
-		
-		for (Solution<Integer> sol : solve.getSolutions()) {
-			System.out.println(sol);
+		System.out.println("Solving N-queens " + size + " resulted in " + solve.getTotal() + " solutions");
+		if (expectedSolutions < 30) {
+			for (Solution<Integer> sol : solve.getSolutions()) {
+				System.out.println(sol);
+			}
 		}
-		assertEquals(2, solve.getTotal(), 0.1);
+		assertEquals(expectedSolutions, (int) solve.getTotal());
 	}
 	
-	@Test
-	public void eightQueens() throws Exception {
-		AnalyzeFactory<Integer> queens = createQueens(8);
-		AnalyzeResult<Integer> solutions = queens.solve();
-		assertEquals(92, solutions.getTotal(), 0.001);
-	}
-
 	public static AnalyzeFactory<Integer> createQueens(int size) {
 		AnalyzeFactory<Integer> analyze = new AnalyzeFactory<Integer>();
 		
