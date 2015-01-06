@@ -13,17 +13,17 @@ public class NQueens {
 		
 		for (int x = 0; x < size; x++) {
 			// Diagonal from top to bottom-right
-			analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createDiagonal(x, 0, size, 1, 1), 0, 1));
+			analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createLine(x, 0, size, 1, 1), 0, 1));
 			if (x != 0) {
 				// Diagonals from left to bottom-right
-				analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createDiagonal(0, x, size, 1, 1), 0, 1));
+				analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createLine(0, x, size, 1, 1), 0, 1));
 			}
 			
 			// Diagonals from top to left-bottom
-			analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createDiagonal(x, 0, size, -1, 1), 0, 1));
+			analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createLine(x, 0, size, -1, 1), 0, 1));
 			if (x != 0) {
 				// Diagonals from right to left-bottom
-				analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createDiagonal(size - 1, x, size, -1, 1), 0, 1));
+				analyze.addRule(new BoundedFieldRule<Integer>(0, IntegerPoints.createLine(size - 1, x, size, -1, 1), 0, 1));
 			}
 		}
 		
@@ -40,7 +40,5 @@ public class NQueens {
 		
 		return analyze;
 	}
-
-	
 
 }

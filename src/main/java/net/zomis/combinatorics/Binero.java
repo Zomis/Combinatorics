@@ -51,10 +51,10 @@ public class Binero {
 		List<List<Integer>> cols = new ArrayList<List<Integer>>();
 		List<List<Integer>> rows = new ArrayList<List<Integer>>();
 		for (int x = 0; x < size; x++) {
-			fact.addRule(new FieldRule<Integer>(null, IntegerPoints.createDiagonal(0, x, size, 1, 0), size / 2));
-			fact.addRule(new FieldRule<Integer>(null, IntegerPoints.createDiagonal(x, 0, size, 0, 1), size / 2));
-			cols.add(IntegerPoints.createDiagonal(x, 0, size, 0, 1));
-			rows.add(IntegerPoints.createDiagonal(0, x, size, 1, 0));
+			fact.addRule(new FieldRule<Integer>(null, IntegerPoints.createLine(0, x, size, 1, 0), size / 2));
+			fact.addRule(new FieldRule<Integer>(null, IntegerPoints.createLine(x, 0, size, 0, 1), size / 2));
+			cols.add(IntegerPoints.createLine(x, 0, size, 0, 1));
+			rows.add(IntegerPoints.createLine(0, x, size, 1, 0));
 			
 			sliding(fact, 0, x, size, 1, 0, 3);
 			sliding(fact, x, 0, size, 0, 1, 3);

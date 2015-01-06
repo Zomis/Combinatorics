@@ -15,7 +15,7 @@ public class IntegerPoints {
 		return new FieldRule<Integer>(pos(x, y, size), Arrays.asList(pos(x, y, size)), i);
 	}
 
-	public static List<Integer> createDiagonal(int x, int y, int size, int offsetX, int offsetY) {
+	public static List<Integer> createLine(int x, int y, int size, int offsetX, int offsetY) {
 		List<Integer> fields = new ArrayList<Integer>();
 		while (x < size && y < size && x >= 0 && y >= 0) {
 			fields.add(pos(x, y, size));
