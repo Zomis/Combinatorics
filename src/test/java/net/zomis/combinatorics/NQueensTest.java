@@ -41,9 +41,11 @@ public class NQueensTest {
 		if (expectedSolutions < 30) {
 			for (Solution<Integer> sol : solve.getSolutions()) {
 				System.out.println(sol);
+				System.out.println(IntegerPoints.map(sol.getSetGroupValues(), size));
 			}
 		}
 		assertEquals(expectedSolutions, (int) solve.getTotal());
+		System.out.println();
 	}
 	
 }

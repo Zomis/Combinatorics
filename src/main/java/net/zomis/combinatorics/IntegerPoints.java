@@ -57,5 +57,4 @@ public class IntegerPoints {
 		return y * size + x;
 	}
 	
-
 }
