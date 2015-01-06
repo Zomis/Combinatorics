@@ -2,7 +2,6 @@ package net.zomis.combinatorics;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map.Entry;
@@ -89,11 +88,6 @@ public class UniqueSequence<T> extends FieldRule<T> {
 	@Override
 	public String toString() {
 		return "UniqueSeq " + list;
-	}
-	
-	@Override
-	public Iterator<List<FieldGroup<T>>> iterator() {
-		return new ArrayList<List<FieldGroup<T>>>().iterator();
 	}
 	
 }
