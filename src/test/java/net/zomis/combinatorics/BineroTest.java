@@ -49,6 +49,11 @@ public class BineroTest {
 	}
 	
 	@Test
+	public void veryHard8() {
+		solve("veryhard8");
+	}
+
+	@Test
 	public void veryHard14() {
 		solve("veryhard14");
 	}
