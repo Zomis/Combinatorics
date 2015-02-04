@@ -18,7 +18,7 @@ public class UniqueSequence<T> extends FieldRule<T> {
 
 	public UniqueSequence(T cause, List<List<T>> fields) {
 		super(cause, new ArrayList<T>(), 0);
-		this.list = fields;
+		this.list = new ArrayList<List<T>>(fields);
 	}
 	
 	@Override
